@@ -1,4 +1,4 @@
-import codecs  # Import the codecs module
+import codecs
 
 # Ask the user for some text to encrypt or decrypt
 text = input("Enter some text to encrypt or decrypt: ")
