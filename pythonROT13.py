@@ -1,18 +1,17 @@
-import string
+import codecs  # Import the codecs module
 
-def rot13_encrypt_decrypt(message):
-    encrypted_decrypted_message = ""
+# Ask the user for some text to encrypt or decrypt
+text = input("Enter some text to encrypt or decrypt: ")
 
-    for char in message:
-        if char in string.ascii_uppercase:
-            encrypted_decrypted_message += string.ascii_uppercase[(string.ascii_uppercase.index(char) + 13) % 26]
-        elif char in string.ascii_lowercase:
-            encrypted_decrypted_message += string.ascii_lowercase[(string.ascii_lowercase.index(char) + 13) % 26]
-        else:
-            encrypted_decrypted_message += char
+# Check if the text is already encrypted
+if text == codecs.encode(text, "rot13"):
+    # The text is encrypted, so decrypt it
+    decrypted_text = codecs.decode(text, "rot13")
+    print(f"Decrypted text: {decrypted_text}")
+else:
+    # The text is not encrypted, so encrypt it
+    encrypted_text = codecs.encode(text, "rot13")
+    print(f"Encrypted text: {encrypted_text}")
 
-    return encrypted_decrypted_message
-
-message = input("Enter the message to encrypt/decrypt: ")
-
-print(rot13_encrypt_decrypt(message))
+# Keep the script running until the user is ready to exit
+input("Press enter to exit.")
