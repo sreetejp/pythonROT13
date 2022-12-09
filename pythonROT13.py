@@ -1,45 +1,18 @@
-def encrypt(message):
-    characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+import string
 
-    encrypted_message = ""
+def rot13_encrypt_decrypt(message):
+    encrypted_decrypted_message = ""
 
     for char in message:
-        if char in characters:
-            char_index = characters.index(char)
-
-            shifted_index = (char_index + 13) % len(characters)
-
-            encrypted_char = characters[shifted_index]
+        if char in string.ascii_uppercase:
+            encrypted_decrypted_message += string.ascii_uppercase[(string.ascii_uppercase.index(char) + 13) % 26]
+        elif char in string.ascii_lowercase:
+            encrypted_decrypted_message += string.ascii_lowercase[(string.ascii_lowercase.index(char) + 13) % 26]
         else:
-            encrypted_char = char
+            encrypted_decrypted_message += char
 
-        encrypted_message += encrypted_char
+    return encrypted_decrypted_message
 
-    return encrypted_message
+message = input("Enter the message to encrypt/decrypt: ")
 
-def decrypt(encrypted_message):
-    characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
-    decrypted_message = ""
-
-    for char in encrypted_message:
-        if char in characters:
-            char_index = characters.index(char)
-
-            shifted_index = (char_index - 13) % len(characters)
-
-            decrypted_char = characters[shifted_index]
-        else:
-            decrypted_char = char
-
-        decrypted_message += decrypted_char
-
-    return decrypted_message
-
-message = input("Enter the message you want to encrypt/decrypt: ")
-
-encrypted_message = encrypt(message)
-print("Encrypted message:", encrypted_message)
-
-decrypted_message = decrypt(encrypted_message)
-print("Decrypted message:", decrypted_message)
+print(rot13_encrypt_decrypt(message))
